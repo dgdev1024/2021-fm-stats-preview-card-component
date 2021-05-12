@@ -116,6 +116,7 @@ html {
 
 .preview-card__attribution {
   font-size: 0.8rem;
+  line-height: initial !important;
   padding-bottom: 0px;
 }
 
