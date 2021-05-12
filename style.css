@@ -1,0 +1,210 @@
+/** Variables **/
+:root {
+  --color-very-dark-blue: hsl(233, 47%, 7%);
+  --color-dark-desaturated-blue: hsl(244, 38%, 16%);
+  --color-soft-violet: hsl(277, 64%, 61%);
+  --color-transparent-soft-violet: hsla(277, 64%, 61%, 0.5);
+  --color-white: hsl(0, 0%, 100%);
+  --color-transparent-white-one: hsla(0, 0%, 100%, 0.75);
+  --color-transparent-white-two: hsla(0, 0%, 100%, 0.6);
+  --font-family-normal: "Inter", sans-serif;
+  --font-family-special: "Lexend Deca", sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+}
+
+/** Animations **/
+@keyframes pulsate-insights {
+  0% {
+    color: var(--color-white);
+  }
+
+  50% {
+    color: var(--color-soft-violet);
+  }
+
+  100% {
+    color: var(--color-white);
+  }
+}
+
+/** CSS Reset **/
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: var(--font-family-normal);
+  font-weight: var(--font-weight-normal);
+}
+
+/** Root Font Size **/
+html {
+  font-size: 15px;
+}
+
+/** Main Content **/
+.main {
+  display: grid;
+  place-items: center;
+
+  min-height: 100vh;
+  background-color: var(--color-very-dark-blue);
+}
+
+/** Preview Card Body **/
+.preview-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.5fr 1fr;
+  grid-template-areas: "image" "content";
+  width: 90%;
+  max-width: 1024px;
+  margin: 80px auto;
+  background-color: var(--color-dark-desaturated-blue);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/** Preview Card Background Image **/
+.preview-card__background-image {
+  grid-area: image;
+  position: relative;
+  background-image: url("./images/image-header-mobile.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.preview-card__background-image:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-transparent-soft-violet);
+}
+
+/** Preview Card Contents **/
+.preview-card__content {
+  padding: 32px;
+  padding-bottom: 16px;
+  text-align: center;
+}
+
+.preview-card__heading {
+  font-size: 1.85rem;
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-normal);
+  color: var(--color-white);
+}
+
+.preview-card__heading-span {
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+
+  animation-name: pulsate-insights;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+}
+
+.preview-card__text {
+  padding: 16px 0px;
+  color: var(--color-transparent-white-one);
+  line-height: 1.75rem;
+}
+
+.preview-card__attribution {
+  font-size: 0.8rem;
+  padding-bottom: 0px;
+}
+
+.preview-card__link {
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+.preview-card__link:hover {
+  text-decoration: underline;
+}
+
+.preview-card__stats-strip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.preview-card__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.preview-card__stat-value {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+}
+
+.preview-card__stat-metric {
+  font-family: var(--font-family-special);
+  font-weight: var(--font-weight-bold);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  color: var(--color-transparent-white-two);
+}
+
+@media (min-width: 600px) {
+  .preview-card {
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .preview-card__heading {
+    font-size: 2rem;
+  }
+
+  .preview-card__stats-strip {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
+
+@media (min-width: 800px) {
+  .preview-card {
+    grid-template-rows: 1.25fr 1fr;
+  }
+}
+
+@media (min-width: 1000px) {
+  .preview-card {
+    grid-template-columns: 55% 45%;
+    grid-template-rows: 1fr;
+    grid-template-areas: "content image";
+  }
+
+  .preview-card__background-image {
+    background-image: url("./images/image-header-desktop.jpg");
+  }
+
+  .preview-card__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 64px;
+    padding-bottom: 32px;
+    text-align: left;
+  }
+
+  .preview-card__heading {
+    font-size: 2.25rem;
+  }
+
+  .preview-card__stats-strip {
+    justify-content: flex-start;
+    gap: 48px;
+    margin-top: 48px;
+  }
+}
